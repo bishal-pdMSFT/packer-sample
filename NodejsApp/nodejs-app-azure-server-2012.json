@@ -1,0 +1,70 @@
+{
+    "builders": [
+        {
+            "type": "azure-arm",
+
+            "client_id": "4cf33657-968f-4e99-be80-edd8300b4586",
+            "client_secret": "12345",
+            "resource_group_name": "bishal-packer-rg1",
+            "storage_account": "bishalpackerimages",
+            "subscription_id": "c00d16c7-6c1f-4c03-9be1-6934a4c49682",
+            "tenant_id": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+            "object_id": "90ab0072-c75a-4fba-ac9b-51e7927065d7",
+
+            "capture_container_name": "images",
+            "capture_name_prefix": "packer",
+            "os_type": "Windows",
+            "image_publisher": "MicrosoftWindowsServer",
+            "image_offer": "WindowsServer",
+            "image_sku": "2012-R2-Datacenter",
+
+            "location": "South India",
+
+            "vm_size": "Standard_D3_v2",
+
+            "communicator": "winrm",
+            "winrm_use_ssl": "true",
+            "winrm_insecure": "true",
+            "winrm_timeout": "15m",
+            "winrm_username": "packer"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "windows-shell",
+            "inline": [
+                "cmd /c \"mkdir c:\\\\NVM\""
+            ]
+        },
+        {
+            "type": "file",
+            "source": "C:\\Users\\biprasad\\Documents\\Visual Studio 2015\\Projects\\NodejsWebApp1\\NodejsWebApp1\\",
+            "destination": "c:\\NVM"
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "Start-Process powershell -ArgumentList \"C:\\\\NVM\\\\Deploy\\\\InstallIIS.ps1\" -NoNewWindow -Wait"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "Start-Process powershell -ArgumentList \"C:\\\\NVM\\\\Deploy\\\\Download.ps1\" -NoNewWindow -Wait"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "Start-Process powershell -ArgumentList \"C:\\\\NVM\\\\Deploy\\\\SetupWeb.ps1\" -NoNewWindow -Wait"
+            ]
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "if( Test-Path $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml -Force}",
+                "& $Env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quit /quiet"
+            ]
+        }
+    ]
+}
