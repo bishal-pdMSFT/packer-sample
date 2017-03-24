@@ -1,6 +1,6 @@
 "use strict";
-const http = require('http');
-const os = require('os');
+var http = require('http');
+var os = require('os');
 var port = process.env.port || 1337;
 http.createServer(function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
