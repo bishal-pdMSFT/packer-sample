@@ -2,23 +2,11 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "vmSku": {
-      "value": "Standard_D3_v2"
-    },
     "vmssName": {
-      "value": "bishal1vmss"
-    },
-    "instanceCount": {
-      "value": 2
-    },
-    "adminUsername": {
-      "value": "tfs"
+      "value": "bishal2vmss"
     },
     "imageUri":{
       "value": "https://bishalpackerimages.blob.core.windows.net/system/Microsoft.Compute/Images/vsts-buildimagetask/Release-1-osDisk.4fb5ceb7-0843-458b-ba63-5bfc56189a41.vhd"
-    },
-    "adminPassword": {
-      "value": "GameNight!12"
     }
   }
 }

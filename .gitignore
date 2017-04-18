@@ -1,2 +1,3 @@
 /NodejsApp/.vs/*
 /NodejsApp/NodejsWebApp1/obj
+.vscode/launch.json

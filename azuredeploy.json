@@ -9,7 +9,6 @@
         "description": "Size of VMs in the VM Scale Set."
       }
     },
- 
     "vmssName":{
       "type":"string",
       "metadata":{

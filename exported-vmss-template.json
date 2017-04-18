@@ -1,0 +1,357 @@
+    {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+            "virtualMachineScaleSets_bishal6vm_name": {
+                "defaultValue": "bishal6vm",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_name": {
+                "defaultValue": "bishal6vmlb",
+                "type": "String"
+            },
+            "publicIPAddresses_bishal6vmpip_name": {
+                "defaultValue": "bishal6vmpip",
+                "type": "String"
+            },
+            "virtualNetworks_bishal6vmvnet_name": {
+                "defaultValue": "bishal6vmvnet",
+                "type": "String"
+            },
+            "storageAccounts_es3d5tcsfkytebishal6vmsa_name": {
+                "defaultValue": "es3d5tcsfkytebishal6vmsa",
+                "type": "String"
+            },
+            "storageAccounts_jpgtjs4b2hz6ubishal6vmsa_name": {
+                "defaultValue": "jpgtjs4b2hz6ubishal6vmsa",
+                "type": "String"
+            },
+            "storageAccounts_mppendwnzufqebishal6vmsa_name": {
+                "defaultValue": "mppendwnzufqebishal6vmsa",
+                "type": "String"
+            },
+            "storageAccounts_setga3d7rrzk2bishal6vmsa_name": {
+                "defaultValue": "setga3d7rrzk2bishal6vmsa",
+                "type": "String"
+            },
+            "storageAccounts_ughfrk7k3eoqgbishal6vmsa_name": {
+                "defaultValue": "ughfrk7k3eoqgbishal6vmsa",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_id": {
+                "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb/frontendIPConfigurations/LoadBalancerFrontEnd",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_id_1": {
+                "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb/backendAddressPools/bishal6vmbepool",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_id_2": {
+                "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb/probes/tcpProbe",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_id_3": {
+                "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb/frontendIPConfigurations/LoadBalancerFrontEnd",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_id_4": {
+                "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb/frontendIPConfigurations/LoadBalancerFrontEnd",
+                "type": "String"
+            },
+            "loadBalancers_bishal6vmlb_id_5": {
+                "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb/frontendIPConfigurations/LoadBalancerFrontEnd",
+                "type": "String"
+            }
+        },
+        "variables": {},
+        "resources": [
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Compute/virtualMachineScaleSets/bishal6vm'.",
+                "type": "Microsoft.Compute/virtualMachineScaleSets",
+                "sku": {
+                    "name": "Standard_D3_v2",
+                    "tier": "Standard",
+                    "capacity": 2
+                },
+                "name": "[parameters('virtualMachineScaleSets_bishal6vm_name')]",
+                "apiVersion": "2016-04-30-preview",
+                "location": "SouthIndia",
+                "properties": {
+                    "singlePlacementGroup": true,
+                    "upgradePolicy": {
+                        "mode": "Automatic"
+                    },
+                    "virtualMachineProfile": {
+                        "osProfile": {
+                            "computerNamePrefix": "[parameters('virtualMachineScaleSets_bishal6vm_name')]",
+                            "adminUsername": "tfs",
+                            "windowsConfiguration": {
+                                "provisionVMAgent": true,
+                                "enableAutomaticUpdates": true
+                            },
+                            "secrets": []
+                        },
+                        "storageProfile": {
+                            "osDisk": {
+                                "osType": "Windows",
+                                "name": "[concat(parameters('virtualMachineScaleSets_bishal6vm_name'),'osdisk')]",
+                                "createOption": "FromImage",
+                                "image": {
+                                    "uri": "https://bishalpackerimages.blob.core.windows.net/system/Microsoft.Compute/Images/vsts-buildimagetask/Release-2-osDisk.ffaa33e1-b64d-4057-a0bb-7a423d0173e2.vhd"
+                                },
+                                "caching": "ReadOnly"
+                            }
+                        },
+                        "networkProfile": {
+                            "networkInterfaceConfigurations": [
+                                {
+                                    "name": "[concat(parameters('virtualMachineScaleSets_bishal6vm_name'),'nic')]",
+                                    "properties": {
+                                        "primary": true,
+                                        "ipConfigurations": [
+                                            {
+                                                "name": "[concat(parameters('virtualMachineScaleSets_bishal6vm_name'),'ipconfig')]",
+                                                "properties": {
+                                                    "subnet": {
+                                                        "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_bishal6vmvnet_name')), concat('/subnets/', parameters('virtualMachineScaleSets_bishal6vm_name'),'subnet'))]"
+                                                    },
+                                                    "loadBalancerBackendAddressPools": [
+                                                        {
+                                                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_bishal6vmlb_name')), concat('/backendAddressPools/', parameters('virtualMachineScaleSets_bishal6vm_name'),'bepool'))]"
+                                                        }
+                                                    ],
+                                                    "loadBalancerInboundNatPools": [
+                                                        {
+                                                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_bishal6vmlb_name')), concat('/inboundNatPools/', parameters('virtualMachineScaleSets_bishal6vm_name'),'natpool'))]"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "overprovision": true
+                },
+                "dependsOn": [
+                    "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_bishal6vmvnet_name'))]",
+                    "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_bishal6vmlb_name'))]"
+                ]
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/loadBalancers/bishal6vmlb'.",
+                "type": "Microsoft.Network/loadBalancers",
+                "name": "[parameters('loadBalancers_bishal6vmlb_name')]",
+                "apiVersion": "2016-03-30",
+                "location": "southindia",
+                "properties": {
+                    "frontendIPConfigurations": [
+                        {
+                            "name": "LoadBalancerFrontEnd",
+                            "properties": {
+                                "privateIPAllocationMethod": "Dynamic",
+                                "publicIPAddress": {
+                                    "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_bishal6vmpip_name'))]"
+                                }
+                            }
+                        }
+                    ],
+                    "backendAddressPools": [
+                        {
+                            "name": "bishal6vmbepool"
+                        }
+                    ],
+                    "loadBalancingRules": [
+                        {
+                            "name": "LBRule",
+                            "properties": {
+                                "frontendIPConfiguration": {
+                                    "id": "[parameters('loadBalancers_bishal6vmlb_id')]"
+                                },
+                                "frontendPort": 80,
+                                "backendPort": 80,
+                                "enableFloatingIP": false,
+                                "idleTimeoutInMinutes": 5,
+                                "protocol": "Tcp",
+                                "loadDistribution": "Default",
+                                "backendAddressPool": {
+                                    "id": "[parameters('loadBalancers_bishal6vmlb_id_1')]"
+                                },
+                                "probe": {
+                                    "id": "[parameters('loadBalancers_bishal6vmlb_id_2')]"
+                                }
+                            }
+                        }
+                    ],
+                    "probes": [
+                        {
+                            "name": "tcpProbe",
+                            "properties": {
+                                "protocol": "Tcp",
+                                "port": 80,
+                                "intervalInSeconds": 5,
+                                "numberOfProbes": 2
+                            }
+                        }
+                    ],
+                    "inboundNatRules": [
+                        {
+                            "name": "bishal6vmnatpool.1",
+                            "properties": {
+                                "frontendIPConfiguration": {
+                                    "id": "[parameters('loadBalancers_bishal6vmlb_id_3')]"
+                                },
+                                "frontendPort": 50001,
+                                "backendPort": 3389,
+                                "protocol": "Tcp"
+                            }
+                        },
+                        {
+                            "name": "bishal6vmnatpool.2",
+                            "properties": {
+                                "frontendIPConfiguration": {
+                                    "id": "[parameters('loadBalancers_bishal6vmlb_id_4')]"
+                                },
+                                "frontendPort": 50002,
+                                "backendPort": 3389,
+                                "protocol": "Tcp"
+                            }
+                        }
+                    ],
+                    "outboundNatRules": [],
+                    "inboundNatPools": [
+                        {
+                            "name": "bishal6vmnatpool",
+                            "properties": {
+                                "frontendPortRangeStart": 50000,
+                                "frontendPortRangeEnd": 50119,
+                                "backendPort": 3389,
+                                "protocol": "Tcp",
+                                "frontendIPConfiguration": {
+                                    "id": "[parameters('loadBalancers_bishal6vmlb_id_5')]"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "dependsOn": [
+                    "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_bishal6vmpip_name'))]"
+                ]
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/publicIPAddresses/bishal6vmpip'.",
+                "type": "Microsoft.Network/publicIPAddresses",
+                "name": "[parameters('publicIPAddresses_bishal6vmpip_name')]",
+                "apiVersion": "2016-03-30",
+                "location": "southindia",
+                "properties": {
+                    "publicIPAllocationMethod": "Dynamic",
+                    "idleTimeoutInMinutes": 4,
+                    "dnsSettings": {
+                        "domainNameLabel": "bishal6vmss"
+                    }
+                },
+                "dependsOn": []
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Network/virtualNetworks/bishal6vmvnet'.",
+                "type": "Microsoft.Network/virtualNetworks",
+                "name": "[parameters('virtualNetworks_bishal6vmvnet_name')]",
+                "apiVersion": "2016-03-30",
+                "location": "southindia",
+                "properties": {
+                    "addressSpace": {
+                        "addressPrefixes": [
+                            "10.0.0.0/16"
+                        ]
+                    },
+                    "subnets": [
+                        {
+                            "name": "bishal6vmsubnet",
+                            "properties": {
+                                "addressPrefix": "10.0.0.0/24"
+                            }
+                        }
+                    ]
+                },
+                "dependsOn": []
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Storage/storageAccounts/es3d5tcsfkytebishal6vmsa'.",
+                "type": "Microsoft.Storage/storageAccounts",
+                "sku": {
+                    "name": "Standard_LRS",
+                    "tier": "Standard"
+                },
+                "kind": "Storage",
+                "name": "[parameters('storageAccounts_es3d5tcsfkytebishal6vmsa_name')]",
+                "apiVersion": "2016-01-01",
+                "location": "southindia",
+                "tags": {},
+                "properties": {},
+                "dependsOn": []
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Storage/storageAccounts/jpgtjs4b2hz6ubishal6vmsa'.",
+                "type": "Microsoft.Storage/storageAccounts",
+                "sku": {
+                    "name": "Standard_LRS",
+                    "tier": "Standard"
+                },
+                "kind": "Storage",
+                "name": "[parameters('storageAccounts_jpgtjs4b2hz6ubishal6vmsa_name')]",
+                "apiVersion": "2016-01-01",
+                "location": "southindia",
+                "tags": {},
+                "properties": {},
+                "dependsOn": []
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Storage/storageAccounts/mppendwnzufqebishal6vmsa'.",
+                "type": "Microsoft.Storage/storageAccounts",
+                "sku": {
+                    "name": "Standard_LRS",
+                    "tier": "Standard"
+                },
+                "kind": "Storage",
+                "name": "[parameters('storageAccounts_mppendwnzufqebishal6vmsa_name')]",
+                "apiVersion": "2016-01-01",
+                "location": "southindia",
+                "tags": {},
+                "properties": {},
+                "dependsOn": []
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Storage/storageAccounts/setga3d7rrzk2bishal6vmsa'.",
+                "type": "Microsoft.Storage/storageAccounts",
+                "sku": {
+                    "name": "Standard_LRS",
+                    "tier": "Standard"
+                },
+                "kind": "Storage",
+                "name": "[parameters('storageAccounts_setga3d7rrzk2bishal6vmsa_name')]",
+                "apiVersion": "2016-01-01",
+                "location": "southindia",
+                "tags": {},
+                "properties": {},
+                "dependsOn": []
+            },
+            {
+                "comments": "Generalized from resource: '/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/bishal-packer-app/providers/Microsoft.Storage/storageAccounts/ughfrk7k3eoqgbishal6vmsa'.",
+                "type": "Microsoft.Storage/storageAccounts",
+                "sku": {
+                    "name": "Standard_LRS",
+                    "tier": "Standard"
+                },
+                "kind": "Storage",
+                "name": "[parameters('storageAccounts_ughfrk7k3eoqgbishal6vmsa_name')]",
+                "apiVersion": "2016-01-01",
+                "location": "southindia",
+                "tags": {},
+                "properties": {},
+                "dependsOn": []
+            }
+        ]
+    }

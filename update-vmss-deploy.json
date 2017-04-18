@@ -1,0 +1,43 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmssName":{
+      "type":"string",
+      "metadata":{
+        "description":"String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
+      },
+      "maxLength": 61
+    },
+    "imageUri": {
+      "type": "string",
+      "metadata": {
+        "description": "Uri of the custom VM Image"
+      }
+    }
+  },
+  "variables": {
+    "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
+    "osDiskName": "[concat(variables('namingInfix'), 'osdisk')]",
+    "computeApiVersion": "2016-03-30"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "name": "[variables('namingInfix')]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "[variables('computeApiVersion')]",
+      "properties": {
+        "virtualMachineProfile": {
+          "storageProfile": {
+            "osDisk": {
+              "image": {
+                "uri": "[parameters('imageUri')]"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
