@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmSku": {
-      "value": "Standard_DS1_v2"
+      "value": "Standard_D3_v2"
     },
     "vmssName": {
-      "value": "bishal1vmss"
+      "value": "bishalub3"
     },
     "instanceCount": {
       "value": 2
@@ -15,7 +15,7 @@
       "value": "tfs"
     },
     "imageUri":{
-      "value": "https://bishalpackerimages.blob.core.windows.net/system/Microsoft.Compute/Images/vsts-buildimagetask/Release-1-osDisk.4fb5ceb7-0843-458b-ba63-5bfc56189a41.vhd"
+      "value": "https://sachinmastorage.blob.core.windows.net/system/Microsoft.Compute/Images/vsts-buildimagetask/Release-1-osDisk.320dfbb3-bee1-4886-b84c-96feafc45c48.vhd"
     },
     "adminPassword": {
       "value": "GameNight!12"
