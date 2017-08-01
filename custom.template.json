@@ -34,7 +34,7 @@
         "winrm_username": "packer",
 
         "capture_container_name": "vsts-buildimagetask",
-        "capture_name_prefix": "Release-"
+        "capture_name_prefix": "Release"
     }],
     "provisioners": [{
             "type": "windows-shell",
