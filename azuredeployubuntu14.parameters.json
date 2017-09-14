@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmSku": {
-      "value": "Standard_D3_v2"
+      "value": "Standard_D1_v2"
     },
     "vmssName": {
       "value": "bishalub3"
     },
     "instanceCount": {
-      "value": 2
+      "value": 1
     },
     "adminUsername": {
       "value": "tfs"
