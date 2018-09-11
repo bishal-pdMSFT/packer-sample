@@ -18,7 +18,6 @@
         "client_secret": "{{user `client_secret`}}",
         "managed_image_resource_group_name": "{{user `resource_group_name`}}",
         "managed_image_name": "{{user `managed_image_name`}}",
-        "storage_account": "bishalpackerimages",
         "subscription_id": "c00d16c7-6c1f-4c03-9be1-6934a4c49682",
         "tenant_id": "{{user `tenant_id`}}",
                 
