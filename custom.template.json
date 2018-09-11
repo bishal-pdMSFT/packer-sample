@@ -33,10 +33,7 @@
         "winrm_use_ssl": "true",
         "winrm_insecure": "true",
         "winrm_timeout": "15m",
-        "winrm_username": "packer",
-
-        "capture_container_name": "vsts-buildimagetask",
-        "capture_name_prefix": "Release"
+        "winrm_username": "packer"
     }],
     "provisioners": [{
             "type": "windows-shell",
