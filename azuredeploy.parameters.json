@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmSku": {
-      "value": "Standard_D3_v2"
+      "value": "Standard_DS1_v2"
     },
     "vmssName": {
       "value": "bishal1vmss"

@@ -1,7 +1,7 @@
 Set-ExecutionPolicy Unrestricted
 
 New-item -Path C:\NVM -ItemType Directory -Force
-Copy-Item .\* C:\NVM\ -recurse -Force
+Copy-Item $PSScriptRoot\* C:\NVM\ -recurse -Force
 
 # InstallIIS.ps1
 

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmSku": {
+      "value": "Standard_D1_v2"
+    },
+    "vmssName": {
+      "value": "bishalub3"
+    },
+    "instanceCount": {
+      "value": 1
+    },
+    "adminUsername": {
+      "value": "tfs"
+    },
+    "imageUri":{
+      "value": "https://sachinmastorage.blob.core.windows.net/system/Microsoft.Compute/Images/vsts-buildimagetask/Release-1-osDisk.320dfbb3-bee1-4886-b84c-96feafc45c48.vhd"
+    },
+    "adminPassword": {
+      "value": "GameNight!12"
+    }
+  }
+}
