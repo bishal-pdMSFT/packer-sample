@@ -1,4 +1,3 @@
-sleep 20s
 script_dir=$(dirname "$0")
 echo "Current dir: $script_dir"
 echo "first arg: $1"
